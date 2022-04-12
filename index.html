@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+  #container{
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      width: 95%;
+      margin: auto;
+      margin-top: 30px;
+      
+  }
+  img{
+      height: 300px;
+      width: 350px;
+      border-radius: 10px;
+      margin-left: 80px;
+  }
+  h2{
+      text-align: center;
+  }
+
+
+
+
+    </style>
+</head>
+<body>
+    <select id="sortRate">
+        <option value="">Sort By Name</option>
+        <option value="sort-lh">Low to High</option>
+        <option value="sort-hl">High to Low</option>
+
+
+    </select>
+   
+
+    <div id="container"></div>
+</body>
+</html>
+<script>
+
+var dataBase = [
+  
+    {
+        img:"https://wallpaperaccess.com/full/329583.jpg",
+        name:"Avengers Infinity War",
+        realse_date:"1st-Jan-2021 , Rating-",
+        rating:2,
+    },
+    {
+        img:"https://wallpapercave.com/wp/wp2751453.jpg",
+        name:"Justice Leaugue",
+        realse_date:"2nd-Feb-2020 , Rating-",
+        rating: 3,
+    },
+    {
+        img:"https://wallpaperaccess.com/full/3968126.jpg",
+        name:"Spiderman",
+        realse_date:"1st-Jan.2020 , Rating-",
+        rating: 3,
+    },
+    {
+        img:"https://www.teahub.io/photos/full/256-2561554_hollywood-new-upcoming-movies.jpg",
+        name:"Marvel Avengers",
+        realse_date:"2-Apr-2019 , Rating-",
+        rating: 4,
+    },
+    {
+        img:"https://wallpaperaccess.com/full/3968121.jpg",
+        name:"Ironman-3",
+        realse_date:"5th-Jan-2017 , Rating-",
+        rating: 4,
+    },
+    {
+        img:"https://wallpapercave.com/wp/ltg7wdw.jpg",
+        name:"Thor-Toofan ka Dewta",
+        realse_date:"3rd-Feb-2018 , Rating-",
+        rating: 5,
+    },
+    {
+        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSI9FSgRGvoxAkNxXL5dOK45t8T-CjV07yfw&usqp=CAU",
+        name:"War-1917",
+        realse_date:"1st-Jan-2015 , Rating-",
+        rating: 5,
+    },
+    {
+        img:"https://wallpaperaccess.com/full/3968674.jpg",
+        name:"Justice League2",
+        realse_date:"1st-Mar-2020 , Rating-",
+        rating: 5,
+    },
+    {
+        img:"https://images2.alphacoders.com/589/thumb-1920-589553.png",
+        name:"Avengers Endgame",
+        realse_date:"17th-Sept-2021 , Rating-",
+        rating:4,
+    }
+]
+
+
+    function display(dataBase) 
+    {
+             dataBase.map(function(elem)
+            {
+            // event.preventDefault();
+
+            var box = document.createElement("div");
+
+            var img = document.createElement("img");
+            img.src=elem.img;
+
+            var name = document.createElement("h2");
+            name.innerText=elem.name;
+
+            var date = document.createElement("h2");
+            date.innerText=elem.realse_date;
+
+            var rate=document.createElement("h2");
+            rate.innerText=elem.rating;
+
+            box.append(img,name,date,rate);
+            document.querySelector("#container").append(box)
+
+
+        })
+
+
+
+    }
+
+
+ display(dataBase)
+
+  document.querySelector("#sortRate").addEventListener("change", rateFN);
+
+  function rateFN () {
+   
+     let selected = document.querySelector("#sortRate").value;
+     console.log(selected)
+
+     if(selected == "sort-hl"){
+         dataBase.sort(function (a,b){
+
+          if(a.name > b.name) return 1;
+          if(a.name < b.name) return -1;
+           return 0;
+         });
+         document.querySelector("#counter").innerText= [];
+        display(dataBase)
+     }
+
+     if(selected == "sort-lh"){
+         dataBase.sort(function (a,b) {
+            if(a.name > b.name) return -1;
+            if(a.name < b.name) return 1;
+            return 0;
+
+
+
+         });
+         display(dataBase)
+     }
+  }
+
+ 
+
+</script>
